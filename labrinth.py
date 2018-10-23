@@ -1,7 +1,7 @@
 #x-2 * y-2
 import time
 import random
-
+from getkey import getkey, keys
 a = 50
 b = 10
 t = 0
@@ -28,6 +28,10 @@ def printPos(tab,a,b,char,x,y):
     ltab[xyToPos(a,b,x,y)] = "" + char
     return "".join(ltab)
 
+def getTabPos(tab,a,b,x,y):
+    ltab = list(tab)
+    return ltab[xyToPos(a,b,x,y)]
+
 def cleartable():
     tab = "█" * x + "\n"
     for i in range(y-3):
@@ -44,7 +48,7 @@ pos = [[0,0]]
 condition = True
 while (condition):
     #Uncomment to see lab construction
-    time.sleep(0.04)
+    #time.sleep(0.04)
     array = ['u','d','l','r']
 
     if(cpos[0] < 3 or [int(cpos[0]-3),cpos[1]] in pos):
@@ -135,4 +139,39 @@ while (condition):
     print(tab)
     tab = tab.replace('0',' ')
     condition = (cpos != [0,0])
+cpos[0] +=1
+cpos[1] +=1
+goal = random.choice(pos)
+goal[0] += 1
+goal[1] += 1
+tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
+tab = printPos(tab,goal[0],goal[1],"+",x,y)
+print("\n"*5)
+
+print(tab)
+condit = True
+
+while condit:
+    mv = getkey()
+    if(mv == 'w' and getTabPos(tab,cpos[0],cpos[1] - 1,x,y) != '█'):
+        tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
+        cpos[1] -= 1
+        tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
+    if(mv == 'a' and getTabPos(tab,cpos[0]-1,cpos[1] ,x,y) != '█'):
+        tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
+        cpos[0] -= 1
+        tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
+    if(mv == 's' and getTabPos(tab,cpos[0],cpos[1] + 1,x,y) != '█'):
+        tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
+        cpos[1] += 1
+        tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
+    if(mv == 'd' and getTabPos(tab,cpos[0] + 1,cpos[1] ,x,y) != '█'):
+        tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
+        cpos[0] += 1
+        tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
+    if(cpos == goal):
+        condit = False
+    print("\n"*5)
+    print(tab)
+print("You've reached the goal!!")
 input()
