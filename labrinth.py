@@ -14,6 +14,8 @@ def terminal_size():
     return tw, th
 x,y = terminal_size()
 
+charToPrint='█'
+#charToPrint='@'
 
 x -= x%3
 y -= y%3
@@ -33,10 +35,10 @@ def getTabPos(tab,a,b,x,y):
     return ltab[xyToPos(a,b,x,y)]
 
 def cleartable():
-    tab = "█" * x + "\n"
+    tab = charToPrint * x + "\n"
     for i in range(y-3):
-        tab += ("█" + " " * (x-2) + "█\n")
-    tab += ("█" * x + "\n")
+        tab += (charToPrint + " " * (x-2) + charToPrint + "\n")
+    tab += (charToPrint * x + "\n")
     return tab
 
 tab = cleartable()
@@ -46,9 +48,12 @@ tab = cleartable()
 visited = 1
 pos = [[0,0]]
 condition = True
+displayConstruct = False
+speed = .01 if displayConstruct else 0
+current = 0
 while (condition):
     #Uncomment to see lab construction
-    #time.sleep(0.04)
+    time.sleep(speed)
     array = ['u','d','l','r']
 
     if(cpos[0] < 3 or [int(cpos[0]-3),cpos[1]] in pos):
@@ -65,7 +70,7 @@ while (condition):
         cpos = stack[-1]
         stack = stack[:-1]
     else:
-        visited += 1
+        visited = visited + 1
         nxt = random.choice(array)
 
 
@@ -73,50 +78,50 @@ while (condition):
 
     if(nxt == 'u'):
         cpos[1] -= 3
-        tab = printPos(tab,cpos[0],cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+2,"█",x,y)
+        tab = printPos(tab,cpos[0],cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+2,charToPrint,x,y)
         tab = printPos(tab,cpos[0]+1,cpos[1]+2," ",x,y)
 
     if(nxt == 'l'):
         cpos[0] -= 3
-        tab = printPos(tab,cpos[0],cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+2,"█",x,y)
+        tab = printPos(tab,cpos[0],cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+2,charToPrint,x,y)
         tab = printPos(tab,cpos[0]+2,cpos[1]+1," ",x,y)
 
     if(nxt == 'r'):
         cpos[0] += 3
-        tab = printPos(tab,cpos[0],cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+2,"█",x,y)
+        tab = printPos(tab,cpos[0],cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+2,charToPrint,x,y)
         tab = printPos(tab,cpos[0],cpos[1]+1," ",x,y)
 
     if(nxt == 'd'):
         cpos[1] += 3
-        tab = printPos(tab,cpos[0],cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0],cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+1,cpos[1]+2,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1],"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+1,"█",x,y)
-        tab = printPos(tab,cpos[0]+2,cpos[1]+2,"█",x,y)
+        tab = printPos(tab,cpos[0],cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0],cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+1,cpos[1]+2,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1],charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+1,charToPrint,x,y)
+        tab = printPos(tab,cpos[0]+2,cpos[1]+2,charToPrint,x,y)
         tab = printPos(tab,cpos[0]+1,cpos[1]," ",x,y)
 
     if(nxt != 'a'):
@@ -135,8 +140,14 @@ while (condition):
         stack.append([cpos[0],cpos[1]])
 
     tab = printPos(tab,cpos[0]+1,cpos[1]+1,"0",x,y)
-    print("\n"*5)
-    print(tab)
+    if(displayConstruct):
+        print("\n"*5)
+        print(tab)
+    else:
+        a =10 * visited/((x+1)*(y+1))
+        if(a > .1 * current):
+            print("|" + ("="*int(a*10) + "-"*10)[:10] + "|")
+            current+=1
     tab = tab.replace('0',' ')
     condition = (cpos != [0,0])
 cpos[0] +=1
@@ -153,19 +164,19 @@ condit = True
 
 while condit:
     mv = getkey()
-    if(mv == 'w' and getTabPos(tab,cpos[0],cpos[1] - 1,x,y) != '█'):
+    if(mv == 'w' and getTabPos(tab,cpos[0],cpos[1] - 1,x,y) != charToPrint):
         tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
         cpos[1] -= 1
         tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
-    if(mv == 'a' and getTabPos(tab,cpos[0]-1,cpos[1] ,x,y) != '█'):
+    if(mv == 'a' and getTabPos(tab,cpos[0]-1,cpos[1] ,x,y) != charToPrint):
         tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
         cpos[0] -= 1
         tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
-    if(mv == 's' and getTabPos(tab,cpos[0],cpos[1] + 1,x,y) != '█'):
+    if(mv == 's' and getTabPos(tab,cpos[0],cpos[1] + 1,x,y) != charToPrint):
         tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
         cpos[1] += 1
         tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
-    if(mv == 'd' and getTabPos(tab,cpos[0] + 1,cpos[1] ,x,y) != '█'):
+    if(mv == 'd' and getTabPos(tab,cpos[0] + 1,cpos[1] ,x,y) != charToPrint):
         tab = printPos(tab,cpos[0],cpos[1]," ",x,y)
         cpos[0] += 1
         tab = printPos(tab,cpos[0],cpos[1],"0",x,y)
